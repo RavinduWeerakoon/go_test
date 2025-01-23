@@ -1,0 +1,12 @@
+config:
+  route:
+    routes:
+      - match:
+          - receiver: "alerts"
+
+  receivers:
+   - name: "alerts"
+     webhook:
+       endpoint: "http://webhook-app:8080/webhook"
+       headers:
+         User-Agent: kube-event-exporter 1.0

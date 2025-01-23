@@ -1,0 +1,30 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: simplejob
+# spec:
+#   template:
+#     spec:
+#       containers:
+#       - name: simplejob
+#         image: go_test:latest
+#         imagePullPolicy: IfNotPresent
+#         backoffLimit: 4
+#         resources: {}
+#       restartPolicy: OnFailure
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: simplejob
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: simplejob
+            image: go_test:latest
+            imagePullPolicy: IfNotPresent
+            resources: {}
+          restartPolicy: OnFailure
